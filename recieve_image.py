@@ -27,6 +27,7 @@ while True:
         if line.startswith(b"<START>"):
             total = struct.unpack(">H", line[7:9])[0]
             received = {}
+            buf = b""
             print(f"[Image {counter}] START: expecting {total} chunks")
             continue
 
@@ -39,7 +40,7 @@ while True:
                 print(f"[Image {counter}] INCOMPLETE — missing {len(missing)} chunks: {missing[:20]}")
             else:
                 data = b"".join(received[i] for i in range(total))
-                filename = f"received{counter}.jpg"
+                filename = f"./data/images/received{counter}.jpg"
                 with open(filename, "wb") as f:
                     f.write(data)
                 print(f"[Image {counter}] SAVED {filename} ({len(data)} bytes)")
