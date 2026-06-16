@@ -24,14 +24,14 @@ while True:
         if not line:
             continue
 
-        if line.startswith(b"<START>"):
+        if b"<START>" in line:
             total = struct.unpack(">H", line[7:9])[0]
             received = {}
             buf = b""
             print(f"[Image {counter}] START: expecting {total} chunks")
             continue
 
-        if line.startswith(b"<END>"):
+        if b"<END>" in line:
             if total is None:
                 print("END received but never saw START — ignoring")
                 continue
