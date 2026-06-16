@@ -61,4 +61,4 @@ while True:
             else:
                 print(f"[Image {counter}] CRC fail seq {seq} — dropped")
         except Exception as e:
-            print(f"[Image {counter}] bad packet: {e}")
+            print(f"[Image {counter}] bad packet: {e} | raw line: {line[:40]}")  # <-- add this
