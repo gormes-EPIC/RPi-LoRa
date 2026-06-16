@@ -10,7 +10,7 @@ time.sleep(0.5)
 s = serial.Serial("/dev/serial0", 9600, timeout=1)
 s.reset_input_buffer()
 with open("reciever.log", "a") as file:
-    file.write(f"Starting {time.time()}...")
+    file.write(f"Starting {time.time()}\n")
 received = {}
 total = None
 buf = b""
