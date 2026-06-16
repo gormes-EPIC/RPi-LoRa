@@ -1,12 +1,7 @@
 import serial, time, struct, zlib, base64
 import RPi.GPIO as GPIO
-from PIL import Image
 
-img = Image.open("photo.jpg")
-img.thumbnail((320, 240))
-img.save("small.jpg", quality=40)
-
-IMAGE = "small.jpg"
+IMAGE = "photo.jpg"
 PAYLOAD = 50          # raw bytes per chunk (before base64)
 PACKET_GAP = 0.5     # seconds between packets — tune if you drop data
 
