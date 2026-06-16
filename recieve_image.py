@@ -40,7 +40,7 @@ while True:
                 print(f"[Image {counter}] INCOMPLETE — missing {len(missing)} chunks: {missing[:20]}")
             else:
                 data = b"".join(received[i] for i in range(total))
-                filename = f"./data/images/received{counter}.jpg"
+                filename = f"./data/images/{time.time()}.jpg"
                 with open(filename, "wb") as f:
                     f.write(data)
                 print(f"[Image {counter}] SAVED {filename} ({len(data)} bytes)")
