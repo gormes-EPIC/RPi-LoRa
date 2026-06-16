@@ -52,7 +52,7 @@ while True:
                 with open("reciever.log", "a") as file:
                     file.write(f"Writing {time.time()}.jpg\n")
                 data = b"".join(received[i] for i in range(total))
-                filename = f"~/RPi-LoRa/data/images/{time.time()}.jpg"
+                filename = f"/home/pi/RPi-LoRa/data/images/{time.time()}.jpg"
                 with open(filename, "wb") as f:
                     f.write(data)
                 print(f"[Image {counter}] SAVED {filename} ({len(data)} bytes)")
