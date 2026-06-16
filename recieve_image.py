@@ -25,7 +25,13 @@ while True:
             continue
 
         if b"<START>" in line:
-            total = struct.unpack(">H", line[7:9])[0]
+            idx = line.index(b"<START>")
+            clean = line[idx:]
+            try:
+                total = struct.unpack(">H", clean[7:9])[0]
+            except struct.error:
+                print(f"[Image {counter}] malformed START: {line}")
+                continue
             received = {}
             buf = b""
             print(f"[Image {counter}] START: expecting {total} chunks")
