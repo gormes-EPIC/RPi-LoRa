@@ -27,4 +27,10 @@ time.sleep(PACKET_GAP)
 for seq, chunk in enumerate(chunks):
     crc = zlib.crc32(chunk) & 0xFFFFFFFF
     raw = struct.pack(">HI", seq, crc) + chunk     # 2-byte seq, 4-byte crc, payload
-    line = base64.b64encode(raw) + b"\n"
+    line = base64.b64encode(raw) + b"\n"           # text-safe, newline-terminated
+    s.write(line)
+    print(f"sent {seq+1}/{total}")
+    time.sleep(PACKET_GAP)
+
+s.write(b"<END>\n")
+print("done")
