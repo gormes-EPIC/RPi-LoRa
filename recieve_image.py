@@ -44,7 +44,6 @@ while True:
                     f.write(data)
                 print(f"SAVED {f"recieved{counter}.jpg"} ({len(data)} bytes)")
                 counter += 1
-            total = None
             continue
 
         # data packet
