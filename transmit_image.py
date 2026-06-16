@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 
 IMAGE = "photo.jpg"
 PAYLOAD = 50          # raw bytes per chunk (before base64)
-PACKET_GAP = 0.12     # seconds between packets — tune if you drop data
+PACKET_GAP = 0.5     # seconds between packets — tune if you drop data
 
 M0, M1 = 22, 27
 GPIO.setmode(GPIO.BCM); GPIO.setwarnings(False)
