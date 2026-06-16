@@ -38,4 +38,6 @@ for seq, chunk in enumerate(chunks):
     time.sleep(PACKET_GAP)
 
 s.write(b"<END>\n")
+s.write(b"<END>\n")
+s.write(b"<END>\n")
 print("done")
