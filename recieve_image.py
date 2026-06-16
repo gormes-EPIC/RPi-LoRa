@@ -39,14 +39,18 @@ while True:
 
         if b"<END>" in line:
             if total is None:
+                with open("reciever.log", "a") as file:
+                    file.write(f"END received but never saw START — ignoring\n")
                 print("END received but never saw START — ignoring")
                 continue
             missing = [i for i in range(total) if i not in received]
-            with open("reciever.log", "a") as file:
-                file.write(f"Writing {time.time()}.jpg\n")
+            
             if missing:
-                print(f"[Image {counter}] INCOMPLETE — missing {len(missing)} chunks: {missing[:20]}")
+                with open("reciever.log", "a") as file:
+                    file.write(f"[Image {counter}] INCOMPLETE — missing {len(missing)} chunks: {missing[:20]}")
             else:
+                with open("reciever.log", "a") as file:
+                    file.write(f"Writing {time.time()}.jpg\n")
                 data = b"".join(received[i] for i in range(total))
                 filename = f"~/RPi-LoRa/data/images/{time.time()}.jpg"
                 with open(filename, "wb") as f:
