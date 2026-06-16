@@ -1,8 +1,6 @@
 import serial, time, struct, zlib, base64
 import RPi.GPIO as GPIO
 
-OUTPUT = "received.jpg"
-
 M0, M1 = 22, 27
 GPIO.setmode(GPIO.BCM); GPIO.setwarnings(False)
 GPIO.setup(M0, GPIO.OUT); GPIO.setup(M1, GPIO.OUT)
@@ -16,6 +14,8 @@ print("Listening...")
 received = {}     # seq -> chunk bytes
 total = None
 buf = b""
+
+counter = 1
 
 while True:
     buf += s.read(s.inWaiting() or 1)   # read whatever's available
@@ -40,9 +40,10 @@ while True:
                 print(f"INCOMPLETE — missing {len(missing)}: {missing[:20]}...")
             else:
                 data = b"".join(received[i] for i in range(total))
-                with open(OUTPUT, "wb") as f:
+                with open(f"recieved{counter}.jpg", "wb") as f:
                     f.write(data)
-                print(f"SAVED {OUTPUT} ({len(data)} bytes)")
+                print(f"SAVED {f"recieved{counter}.jpg"} ({len(data)} bytes)")
+                counter += 1
             continue
 
         # data packet
