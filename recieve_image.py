@@ -42,6 +42,8 @@ while True:
                 print("END received but never saw START — ignoring")
                 continue
             missing = [i for i in range(total) if i not in received]
+            with open("reciever.log", "a") as file:
+                file.write(f"Writing {time.time()}.jpg\n")
             if missing:
                 print(f"[Image {counter}] INCOMPLETE — missing {len(missing)} chunks: {missing[:20]}")
             else:
